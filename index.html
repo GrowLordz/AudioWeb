@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wish You Were Here ~ NeckDeep</title>
+  <title>Wish You Were Here ~ Neck Deep</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
@@ -39,11 +39,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border: 2px solid rgba(255, 255, 255, 0.25);
-    }
-
-    .music-box:hover {
-      transform: none;
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
 
     .wave-text {
@@ -84,35 +80,34 @@
       margin: 1.2rem 0;
       display: flex;
       justify-content: center;
-      align-items: flex-end;
-      gap: 6px;
-      height: 40px;
+      gap: 4px;
     }
 
     .wave-loader span {
       display: block;
       width: 6px;
+      height: 40px;
       background: white;
       border-radius: 50px;
-      animation: wave 1.4s infinite ease-in-out;
+      animation: wave 1s infinite ease-in-out;
     }
 
-    .wave-loader span:nth-child(1) { animation-delay: 0s; }
-    .wave-loader span:nth-child(2) { animation-delay: 0.1s; }
-    .wave-loader span:nth-child(3) { animation-delay: 0.2s; }
-    .wave-loader span:nth-child(4) { animation-delay: 0.3s; }
-    .wave-loader span:nth-child(5) { animation-delay: 0.4s; }
+    .wave-loader span:nth-child(2) { animation-delay: 0.2s; }
+    .wave-loader span:nth-child(3) { animation-delay: 0.4s; }
+    .wave-loader span:nth-child(4) { animation-delay: 0.6s; }
+    .wave-loader span:nth-child(5) { animation-delay: 0.8s; }
 
     @keyframes wave {
       0%, 100% { height: 20px; }
+      25% { height: 40px; }
       50% { height: 60px; }
+      75% { height: 40px; }
     }
 
     audio {
       width: 100%;
       margin-top: 1.2rem;
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.2);
     }
 
     .wa-button {
@@ -160,6 +155,30 @@
       animation: float 10s infinite ease-in-out;
     }
 
+    #lyrics-box {
+      position: absolute;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 300px;
+      height: 400px;
+      padding: 10px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 15px;
+      backdrop-filter: blur(15px);
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+      z-index: 2;
+    }
+
+    #lyrics-box .active {
+      color: #00ffe1;
+      font-weight: bold;
+    }
+
     @keyframes float {
       0% { transform: translateY(100vh) scale(0.5); }
       100% { transform: translateY(-10vh) scale(1); }
@@ -179,17 +198,19 @@
     <span style="left: 85%; animation-delay: 1.5s;"></span>
   </div>
 
+  <div id="lyrics-box"></div>
+
   <div class="music-box">
     <div class="wave-text">Enjoy the song ;)</div>
     <div class="anime-img">
-      <img src="IMG.jpg" alt="...." />
+      <img src="IMG.jpg" alt="Cover" />
     </div>
 
     <div class="wave-loader">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <audio controls>
+    <audio controls id="audio">
       <source src="Audio.mp3" type="audio/mp3" />
       Your browser does not support the audio element.
     </audio>
@@ -200,5 +221,55 @@
       </a>
     </div>
   </div>
+
+  <script>
+    const audio = document.getElementById("audio");
+    const lyricsBox = document.getElementById("lyrics-box");
+    let lyrics = [];
+
+    fetch("lyrics.lrc")
+      .then(res => res.text())
+      .then(data => {
+        lyrics = data.split("\n").map(line => {
+          const match = line.match(/(\d{2}):(\d{2}).(\d{2})(.*)/);
+          if (match) {
+            const min = parseInt(match[1]);
+            const sec = parseInt(match[2]);
+            const ms = parseInt(match[3]);
+            const time = min * 60 + sec + ms / 100;
+            return { time, text: match[4].trim() };
+          }
+        }).filter(Boolean);
+
+        lyrics.forEach(line => {
+          const div = document.createElement("div");
+          div.textContent = line.text;
+          lyricsBox.appendChild(div);
+        });
+      });
+
+    audio.addEventListener("timeupdate", () => {
+      const currentTime = audio.currentTime;
+      let activeIndex = -1;
+
+      lyrics.forEach((line, i) => {
+        if (currentTime >= line.time) {
+          activeIndex = i;
+        }
+      });
+
+      const divs = lyricsBox.querySelectorAll("div");
+      divs.forEach((div, i) => {
+        div.classList.toggle("active", i === activeIndex);
+      });
+
+      if (activeIndex >= 0) {
+        const activeDiv = divs[activeIndex];
+        if (activeDiv) {
+          lyricsBox.scrollTop = activeDiv.offsetTop - lyricsBox.clientHeight / 2 + activeDiv.clientHeight / 2;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
