@@ -41,11 +41,10 @@
       justify-content: center;
       border: 2px solid rgba(255, 255, 255, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      transform: rotate(-2deg);
     }
 
     .music-box:hover {
-      transform: rotate(0deg) scale(1.05);
+      transform: none;
     }
 
     .wave-text {
@@ -92,7 +91,7 @@
     .wave-loader span {
       display: block;
       width: 6px;
-      height: 20px;
+      height: 40px;
       background: white;
       border-radius: 50px;
       animation: wave 1s infinite ease-in-out;
@@ -104,8 +103,10 @@
     .wave-loader span:nth-child(5) { animation-delay: 0.8s; }
 
     @keyframes wave {
-      0%, 100% { height: 20px; }
-      50% { height: 40px; }
+  0%, 100% { height: 20px; }
+  25% { height: 40px; }
+  50% { height: 60px; }
+  75% { height: 40px; }
     }
 
     audio {
