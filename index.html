@@ -74,6 +74,7 @@
       border: 5px solid rgba(255, 255, 255, 0.4);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
       overflow: hidden;
+      position: relative;
     }
 
     .anime-img img {
@@ -134,36 +135,34 @@
       animation: float 10s infinite ease-in-out;
     }
 
-    
-  .wave-loader {
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 4px;
-    z-index: 3;
-  }
+    .wave-loader {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 4px;
+      z-index: 3;
+    }
 
-  .wave-loader span {
-    display: block;
-    width: 6px;
-    height: 20px;
-    background: white;
-    border-radius: 50px;
-    animation: wave 1s infinite ease-in-out;
-  }
+    .wave-loader span {
+      display: block;
+      width: 6px;
+      height: 20px;
+      background: white;
+      border-radius: 50px;
+      animation: wave 1s infinite ease-in-out;
+    }
 
-  .wave-loader span:nth-child(2) { animation-delay: 0.2s; }
-  .wave-loader span:nth-child(3) { animation-delay: 0.4s; }
-  .wave-loader span:nth-child(4) { animation-delay: 0.6s; }
-  .wave-loader span:nth-child(5) { animation-delay: 0.8s; }
+    .wave-loader span:nth-child(2) { animation-delay: 0.2s; }
+    .wave-loader span:nth-child(3) { animation-delay: 0.4s; }
+    .wave-loader span:nth-child(4) { animation-delay: 0.6s; }
+    .wave-loader span:nth-child(5) { animation-delay: 0.8s; }
 
-  @keyframes wave {
-    0%, 100% { height: 20px; }
-    50% { height: 40px; }
-  }
-</style>
+    @keyframes wave {
+      0%, 100% { height: 20px; }
+      50% { height: 40px; }
+    }
 
     @keyframes float {
       0% { transform: translateY(100vh) scale(0.5); }
@@ -189,7 +188,7 @@
     <div class="anime-img">
       <img src="IMG.jpg" alt="...." />
       <div class="wave-loader">
-  <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
     <audio controls>
