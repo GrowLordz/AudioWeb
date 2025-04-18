@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,163 +11,169 @@
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
-    }
+    }body {
+  height: 100vh;
+  background: linear-gradient(135deg, #2c3e50, #e74c3c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
 
-    body {
-      height: 100vh;
-      background: linear-gradient(135deg, #2c3e50, #e74c3c);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      overflow: hidden;
-      position: relative;
-    }
+.music-container {
+  overflow: hidden;
+  width: 360px;
+  height: auto;
+}
 
-    .music-box {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(25px);
-      border-radius: 20px;
-      box-shadow: 0 12px 50px rgba(0, 0, 0, 0.8);
-      padding: 2rem;
-      width: 360px;
-      text-align: center;
-      animation: fadeIn 2s ease-out;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-    }
+.music-slider {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  will-change: transform;
+}
 
-    .music-box:hover {
-      transform: none;
-    }
+.music-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.8);
+  padding: 2rem;
+  width: 360px;
+  text-align: center;
+  animation: fadeIn 2s ease-out;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .wave-text {
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(270deg, #ff0047, #00ffe1, #fbff00, #ff0047);
-      background-size: 800% 800%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rainbow 6s ease infinite;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-    }
+.wave-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(270deg, #ff0047, #00ffe1, #fbff00, #ff0047);
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 6s ease infinite;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
 
-    @keyframes rainbow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    .anime-img {
-      margin-top: 10px;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 5px solid rgba(255, 255, 255, 0.4);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-      overflow: hidden;
-    }
+.anime-img {
+  margin-top: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
 
-    .anime-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.anime-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .wave-loader {
-      margin: 1.2rem 0;
-      display: flex;
-      justify-content: center;
-      gap: 4px;
-    }
+audio {
+  width: 100%;
+  margin-top: 1.2rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+}
 
-    .wave-loader span {
-      display: block;
-      width: 6px;
-      height: 40px;
-      background: white;
-      border-radius: 50px;
-      animation: wave 1s infinite ease-in-out;
-    }
+.wa-button {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.8rem 1.4rem;
+  border-radius: 12px;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
 
-    .wave-loader span:nth-child(2) { animation-delay: 0.2s; }
-    .wave-loader span:nth-child(3) { animation-delay: 0.4s; }
-    .wave-loader span:nth-child(4) { animation-delay: 0.6s; }
-    .wave-loader span:nth-child(5) { animation-delay: 0.8s; }
+.wa-button a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    @keyframes wave {
+.wa-button i {
+  color: #25d366;
+  font-size: 1.2rem;
+}
+
+.wa-button:hover {
+  background: rgba(76, 175, 80, 0.25);
+}
+
+.decor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decor span {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+}
+
+.wave-loader {
+  margin-top: 1rem;
+  display: flex;
+  gap: 4px;
+  z-index: 3;
+}
+
+.wave-loader span {
+  display: block;
+  width: 6px;
+  height: 20px;
+  background: white;
+  border-radius: 50px;
+  animation: wave 1s infinite ease-in-out;
+}
+
+.wave-loader span:nth-child(2) { animation-delay: 0.2s; }
+.wave-loader span:nth-child(3) { animation-delay: 0.4s; }
+.wave-loader span:nth-child(4) { animation-delay: 0.6s; }
+.wave-loader span:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes wave {
   0%, 100% { height: 20px; }
-  25% { height: 40px; }
-  50% { height: 60px; }
-  75% { height: 40px; }
-    }
+  50% { height: 40px; }
+}
 
-    audio {
-      width: 100%;
-      margin-top: 1.2rem;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.2);
-    }
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.5); }
+  100% { transform: translateY(-10vh) scale(1); }
+}
 
-    .wa-button {
-      margin-top: 2rem;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 0.8rem 1.4rem;
-      border-radius: 12px;
-      transition: background 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
 
-    .wa-button a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .wa-button i {
-      color: #25d366;
-      font-size: 1.2rem;
-    }
-
-    .wa-button:hover {
-      background: rgba(76, 175, 80, 0.25);
-    }
-
-    .decor {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .decor span {
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: float 10s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(0.5); }
-      100% { transform: translateY(-10vh) scale(1); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
   </style>
 </head>
 <body>
@@ -177,29 +182,94 @@
     <span style="left: 40%; animation-delay: 3s;"></span>
     <span style="left: 70%; animation-delay: 6s;"></span>
     <span style="left: 85%; animation-delay: 1.5s;"></span>
-  </div>
-
+  </div>  <div class="music-container">
+    <div class="music-slider">
+      <div class="music-box">
+        <div class="wave-text">Enjoy the song ;)</div>
+        <div class="anime-img">
+          <img src="IMG.jpg" alt="...." />
+        </div>
+        <div class="wave-loader">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <audio controls>
+          <source src="Audio.mp3" type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+        <div class="wa-button">
+          <a href="https://wa.me/6285895954504" target="_blank">
+            <i class="fab fa-whatsapp"></i> My Contact
+          </a>
+        </div>
+      </div>
+      <!-- Dulikat .music-box di sini untuk lagu lainnya -->
+      
+      <div class="music-slider">
+  <!-- Lagu 1 -->
   <div class="music-box">
     <div class="wave-text">Enjoy the song ;)</div>
     <div class="anime-img">
-      <img src="IMG.jpg" alt="...." />
+      <img src="IMG1.jpg" alt="Cover 1" />
+      <div class="wave-loader">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
     </div>
-
-    <!-- wave-loader dipindahkan ke sini -->
-    <div class="wave-loader">
-      <span></span><span></span><span></span><span></span><span></span>
-    </div>
-
     <audio controls>
-      <source src="Audio.mp3" type="audio/mp3" />
-      Your browser does not support the audio element.
+      <source src="Audio1.mp3" type="audio/mp3" />
     </audio>
-
     <div class="wa-button">
       <a href="https://wa.me/6285895954504" target="_blank">
         <i class="fab fa-whatsapp"></i> My Contact
       </a>
     </div>
   </div>
-</body>
+
+  <!-- Lagu 2 -->
+  <div class="music-box">
+    <div class="wave-text">Another Vibe</div>
+    <div class="anime-img">
+      <img src="IMG2.jpg" alt="Cover 2" />
+      <div class="wave-loader">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <audio controls>
+      <source src="Audio2.mp3" type="audio/mp3" />
+    </audio>
+    <div class="wa-button">
+      <a href="https://wa.me/6285895954504" target="_blank">
+        <i class="fab fa-whatsapp"></i> My Contact
+      </a>
+    </div>
+  </div>
+</div>
+  </div>  <script>
+    let slider = document.querySelector('.music-slider');
+    let currentSlide = 0;
+    const totalSlides = document.querySelectorAll('.music-box').length;
+    let startTouchX = 0;
+    let endTouchX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+      startTouchX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', (e) => {
+      endTouchX = e.changedTouches[0].clientX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      if (endTouchX < startTouchX - 50 && currentSlide < totalSlides - 1) {
+        currentSlide++;
+      } else if (endTouchX > startTouchX + 50 && currentSlide > 0) {
+        currentSlide--;
+      }
+      updateSlider();
+    }
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+  </script></body>
 </html>
