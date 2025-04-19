@@ -49,6 +49,16 @@
       margin-bottom: 20px;
       animation: popIn 1.5s ease;
     }
+    #loader .splash-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  object-fit: cover;
+  margin-bottom: 20px;
+  animation: popIn 1.5s ease;
+}
 
     #loader h2 {
       color: #ffffffcc;
@@ -184,13 +194,13 @@
 </head>
 <body>
 
-  <!-- Splash Screen -->
-  <div id="loader">
-    <img src="IMG.jpg" alt="Loading..." />
-    <h2>Now playing...</h2>
-  </div>
+  <!-- Animasi Loading Screen -->
+  <<div id="loader">
+  <img src="character.png" alt="Loading..." class="splash-img" />
+  <h2>Now playing...</h2>
+</div>
 
-  <!-- Background Bubbles -->
+  <!-- Background Bubble -->
   <div class="decor">
     <span style="left: 10%; animation-delay: 0s;"></span>
     <span style="left: 40%; animation-delay: 3s;"></span>
